@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scalistic — Bridge the Data Gap | by Research Synergy Foundation</title>
+<meta name="description" content="Scalistic adalah platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0B1E3F;
+    --navy-2:#0A1A38;
+    --navy-3:#122A55;
+    --gold:#E8A82C;
+    --gold-2:#D9970E;
+    --teal:#14554F;
+    --teal-2:#1A6B62;
+    --cream:#F7F3EA;
+    --cream-2:#EFE9DA;
+    --ink:#1B2A3F;
+    --muted:#5B6B82;
+    --line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display',Georgia,serif;font-weight:700;line-height:1.15;color:var(--navy)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+  /* NAV */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(11,30,63,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:1280px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;color:#fff}
+  .brand-mark{
+    width:44px;height:44px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#fff,#E7DFCB 70%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-weight:800;color:var(--navy);font-size:18px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+  }
+  .brand-text{line-height:1.1}
+  .brand-text .big{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff}
+  .brand-text .sub{font-size:11px;color:#B9C6DA;letter-spacing:.5px}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{color:#D5DEEF;font-size:14px;font-weight:500;transition:.2s}
+  .nav-links a:hover{color:var(--gold)}
+  .nav-cta{display:flex;gap:10px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;border-radius:10px;font-weight:600;font-size:14px;
+    transition:transform .15s,box-shadow .2s,background .2s,color .2s;cursor:pointer;border:none;
+  }
+  .btn-primary{background:var(--gold);color:var(--navy)}
+  .btn-primary:hover{background:#F2B93F;transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,168,44,.35)}
+  .btn-ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:var(--navy-3)}
+  .btn-teal{background:var(--teal);color:#fff}
+  .btn-teal:hover{background:var(--teal-2)}
+  .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg,#0B1E3F 0%,#0A1A38 100%);
+    color:#fff;
+    padding:90px 0 110px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 85% 20%,rgba(232,168,44,.16),transparent 60%),
+      radial-gradient(400px 260px at 15% 90%,rgba(20,85,79,.35),transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .marker{
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:26px;color:#E9DFC8;
+  }
+  .marker-rule{
+    width:44px;height:1px;background:var(--gold);flex-shrink:0;
+  }
+  .marker-star{
+    color:var(--gold);font-size:13px;line-height:1;
+    transform:translateY(-1px);
+  }
+  .marker-text{
+    font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;
+    font-weight:500;color:#D8E1F2;
+  }
+  .marker-text em{
+    font-family:'Playfair Display',serif;
+    font-style:italic;color:var(--gold);
+    text-transform:none;letter-spacing:0;font-weight:600;
+    font-size:15px;margin:0 2px;
+  }
+  .marker-num{
+    font-family:'Playfair Display',serif;font-style:italic;
+    color:var(--gold);font-size:14px;letter-spacing:0;
+    text-transform:none;margin-right:2px;
+  }
+  .hero h1{
+    font-size:clamp(38px,5.5vw,68px);color:#fff;letter-spacing:-.02em;margin-bottom:20px;
+  }
+  .hero h1 .accent{color:var(--gold);font-style:italic}
+  .hero .lead{
+    font-size:18px;color:#C7D3E6;max-width:540px;margin-bottom:32px;
+  }
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:640px;
+  }
+  .stat{
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    border-radius:14px;padding:16px 14px;
+    display:flex;gap:12px;align-items:center;
+    transition:.25s;
+  }
+  .stat:hover{background:rgba(255,255,255,.07);border-color:rgba(232,168,44,.4)}
+  .stat-ic{
+    width:38px;height:38px;border-radius:10px;flex-shrink:0;
+    background:linear-gradient(135deg,var(--teal),var(--teal-2));
+    display:flex;align-items:center;justify-content:center;color:var(--gold);
+  }
+  .stat-t{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
+  .stat-s{font-size:11px;color:#9FB0CC;margin-top:2px}
+
+  /* World map illustration */
+  .hero-visual{
+    position:relative;height:460px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .globe{
+    position:relative;width:100%;height:100%;
+  }
+  .dots-map{
+    position:absolute;inset:0;opacity:.55;
+    background-image:radial-gradient(circle at center,rgba(255,255,255,.5) 1px,transparent 1.2px);
+    background-size:14px 14px;
+    -webkit-mask:radial-gradient(ellipse 55% 45% at 50% 50%,#000 40%,transparent 75%);
+            mask:radial-gradient(ellipse 55% 45% at 50% 50%,#000 40%,transparent 75%);
+  }
+  .arc-svg{position:absolute;inset:0;width:100%;height:100%}
+  .arc{fill:none;stroke:var(--gold);stroke-width:1.4;opacity:.85;stroke-dasharray:6 6;animation:dash 12s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-100}}
+  .node{
+    position:absolute;width:14px;height:14px;border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 6px rgba(232,168,44,.15),0 0 20px rgba(232,168,44,.6);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.25);opacity:.7}}
+
+  /* SECTIONS */
+  section{padding:96px 0;position:relative}
+  .section-head{text-align:center;max-width:720px;margin:0 auto 56px}
+  .section-tag{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;
+    color:var(--teal);text-transform:uppercase;margin-bottom:14px;
+  }
+  .section-head h2{font-size:clamp(30px,4vw,46px);margin-bottom:16px}
+  .section-head p{color:var(--muted);font-size:17px}
+  .divider-gold{width:60px;height:3px;background:var(--gold);border-radius:2px;margin:0 auto 22px}
+
+  /* ABOUT + STEPS ROW */
+  .about-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:stretch}
+  .about-card{
+    background:#fff;border-radius:20px;padding:38px;
+    box-shadow:0 10px 40px rgba(11,30,63,.06);
+    border:1px solid rgba(11,30,63,.06);
+    display:flex;flex-direction:column;justify-content:center;
+  }
+  .about-icon{
+    width:64px;height:64px;border-radius:16px;
+    background:linear-gradient(135deg,#F7F3EA,#EAE1CB);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--teal);margin-bottom:20px;
+  }
+  .about-card h3{font-size:26px;margin-bottom:12px}
+  .about-card p{color:var(--muted);font-size:15.5px}
+  .steps-card{
+    background:linear-gradient(160deg,#0B1E3F 0%,#0A1930 100%);
+    color:#fff;border-radius:20px;padding:42px 34px;position:relative;overflow:hidden;
+  }
+  .steps-card::after{
+    content:"";position:absolute;top:-40px;right:-40px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(232,168,44,.18),transparent 70%);
+  }
+  .steps-card h3{color:#fff;font-size:24px;text-align:center;margin-bottom:34px;position:relative}
+  .steps-card h3::after{content:"";display:block;width:44px;height:2.5px;background:var(--gold);margin:12px auto 0;border-radius:2px}
+  .steps{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:12px;position:relative;
+  }
+  .step{
+    display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;
+  }
+  .step-num{
+    position:absolute;top:-8px;right:8px;
+    width:26px;height:26px;border-radius:50%;
+    background:var(--gold);color:var(--navy);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:13px;font-family:'Inter',sans-serif;z-index:2;
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+  }
+  .step-circle{
+    width:74px;height:74px;border-radius:50%;background:#fff;
+    display:flex;align-items:center;justify-content:center;color:var(--navy);
+    margin-bottom:12px;position:relative;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+  }
+  .step:not(:last-child)::after{
+    content:"→";position:absolute;top:28px;right:-14px;font-size:20px;color:var(--gold);opacity:.7;
+  }
+  .step-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;margin-bottom:4px;color:#fff}
+  .step-desc{font-size:11.5px;color:#B9C6DA;line-height:1.4}
+
+  /* DUAL CTA */
+  .dual{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .dual-card{
+    border-radius:22px;padding:44px;color:#fff;
+    display:flex;gap:24px;align-items:center;position:relative;overflow:hidden;
+    transition:transform .3s;
+  }
+  .dual-card:hover{transform:translateY(-4px)}
+  .dual-card.client{background:linear-gradient(135deg,var(--teal) 0%,#0F3F3A 100%)}
+  .dual-card.resp{background:linear-gradient(135deg,var(--gold) 0%,#B47C10 100%);color:#241a02}
+  .dual-icon{
+    width:96px;height:96px;border-radius:50%;background:#fff;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    color:var(--teal);box-shadow:0 12px 30px rgba(0,0,0,.15);
+  }
+  .dual-card.resp .dual-icon{color:var(--gold-2)}
+  .dual-tag{font-size:11px;font-weight:700;letter-spacing:2px;opacity:.85;text-transform:uppercase}
+  .dual-card h3{color:inherit;font-size:26px;margin:6px 0 10px}
+  .dual-card p{font-size:14.5px;opacity:.92;margin-bottom:18px}
+  .dual-btn{
+    display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);
+    padding:12px 22px;border-radius:10px;font-weight:600;font-size:14px;
+    transition:.2s;
+  }
+  .dual-btn:hover{transform:translateX(4px)}
+  .dual-card::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:200px;height:200px;
+    background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);
+  }
+
+  /* WHY / TRUST BAR */
+  .trust{background:#fff;padding:56px 0;border-top:1px solid rgba(11,30,63,.06);border-bottom:1px solid rgba(11,30,63,.06)}
+  .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+  .trust-item{display:flex;gap:16px;align-items:flex-start}
+  .trust-ic{
+    width:52px;height:52px;border-radius:12px;flex-shrink:0;
+    background:var(--cream);color:var(--teal);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .trust-item h4{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
+  .trust-item p{font-size:13.5px;color:var(--muted)}
+
+  /* CLIENT SECTION */
+  .client-section{background:var(--cream);position:relative;overflow:hidden}
+  .client-section::before{
+    content:"";position:absolute;top:0;right:0;width:400px;height:400px;
+    background:radial-gradient(circle,rgba(20,85,79,.06),transparent 70%);
+  }
+  .cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .feat-card{
+    background:#fff;border-radius:18px;padding:28px 24px;
+    border:1px solid rgba(11,30,63,.06);
+    transition:.3s;position:relative;
+  }
+  .feat-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(11,30,63,.08);border-color:var(--gold)}
+  .feat-ic{
+    width:54px;height:54px;border-radius:14px;
+    background:linear-gradient(135deg,var(--teal),var(--teal-2));
+    color:var(--gold);display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .feat-card h4{font-family:'Inter',sans-serif;font-size:16px;color:var(--navy);margin-bottom:8px;font-weight:700}
+  .feat-card p{font-size:14px;color:var(--muted);line-height:1.55}
+
+  /* FOR WHO chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:36px}
+  .chip{
+    background:#fff;border:1px solid rgba(11,30,63,.1);
+    padding:10px 18px;border-radius:99px;font-size:14px;color:var(--navy);
+    font-weight:500;transition:.2s;
+  }
+  .chip:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+  /* PRICING */
+  .price-band{
+    background:linear-gradient(135deg,var(--navy) 0%,#0F2A55 100%);
+    border-radius:24px;padding:56px;color:#fff;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .price-band::after{
+    content:"";position:absolute;bottom:-60px;right:-60px;width:280px;height:280px;
+    background:radial-gradient(circle,rgba(232,168,44,.2),transparent 70%);
+  }
+  .price-band h3{color:#fff;font-size:32px;margin-bottom:14px}
+  .price-band p{color:#C7D3E6;font-size:15.5px;margin-bottom:22px}
+  .price-tag{
+    background:rgba(255,255,255,.06);border:1px solid rgba(232,168,44,.4);
+    padding:22px 28px;border-radius:16px;text-align:center;position:relative;z-index:1;
+  }
+  .price-tag .from{font-size:12px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+  .price-tag .amt{font-family:'Playfair Display',serif;font-size:42px;color:#fff;font-weight:700;line-height:1}
+  .price-tag .per{font-size:13px;color:#B9C6DA;margin-top:6px}
+
+  /* RESPONDENT SECTION */
+  .resp-section{background:#fff}
+  .benefit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .benefit{
+    background:var(--cream);border-radius:16px;padding:24px 20px;
+    text-align:center;border:1px solid rgba(11,30,63,.05);transition:.3s;
+  }
+  .benefit:hover{background:var(--navy);color:#fff;transform:translateY(-4px)}
+  .benefit:hover .benefit-ic{background:var(--gold);color:var(--navy)}
+  .benefit:hover h4,.benefit:hover li{color:#fff}
+  .benefit-ic{
+    width:52px;height:52px;border-radius:12px;
+    background:#fff;color:var(--teal);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 14px;transition:.3s;
+    box-shadow:0 4px 12px rgba(11,30,63,.06);
+  }
+  .benefit h4{font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);margin-bottom:10px;font-weight:700}
+  .benefit ul{list-style:none;text-align:left;padding:0}
+  .benefit li{font-size:12px;color:var(--muted);padding:3px 0;line-height:1.4}
+
+  /* POINTS */
+  .points-band{
+    background:var(--cream);border-radius:22px;padding:36px;
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;align-items:center;
+  }
+  .point{background:#fff;border-radius:16px;padding:28px;display:flex;gap:20px;align-items:center;box-shadow:0 6px 20px rgba(11,30,63,.05)}
+  .point-num{
+    width:66px;height:66px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif;font-weight:700;font-size:24px;color:var(--navy);
+  }
+  .point-t{font-size:13px;color:var(--muted);margin-bottom:2px}
+  .point-d{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);font-weight:700}
+
+  /* FAQ */
+  .faq-section{background:var(--cream)}
+  .faq-list{max-width:840px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+  .faq{
+    background:#fff;border-radius:14px;overflow:hidden;
+    border:1px solid rgba(11,30,63,.06);transition:.2s;
+  }
+  .faq[open]{box-shadow:0 10px 30px rgba(11,30,63,.08);border-color:var(--gold)}
+  .faq summary{
+    padding:22px 26px;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    font-weight:600;color:var(--navy);font-size:16px;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{
+    content:"+";font-size:24px;color:var(--gold);font-weight:400;
+    transition:transform .2s;flex-shrink:0;
+  }
+  .faq[open] summary::after{transform:rotate(45deg)}
+  .faq-body{padding:0 26px 22px;color:var(--muted);font-size:15px;line-height:1.65}
+  .faq-cat{
+    font-size:11px;font-weight:700;letter-spacing:2px;
+    color:var(--teal);text-transform:uppercase;margin:26px 0 8px;padding-left:6px;
+  }
+  .faq-cat:first-child{margin-top:0}
+
+  /* FINAL CTA */
+  .final-cta{
+    background:linear-gradient(135deg,var(--navy) 0%,#122A55 100%);
+    color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden;
+  }
+  .final-cta::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(600px 300px at 20% 30%,rgba(232,168,44,.15),transparent 60%),
+      radial-gradient(500px 260px at 80% 70%,rgba(20,85,79,.35),transparent 60%);
+  }
+  .final-cta > *{position:relative;z-index:1}
+  .final-cta h2{color:#fff;font-size:clamp(32px,4.5vw,52px);margin-bottom:16px;letter-spacing:-.02em}
+  .final-cta h2 span{color:var(--gold);font-style:italic}
+  .final-cta p{color:#C7D3E6;font-size:18px;max-width:640px;margin:0 auto 32px}
+  .final-cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* FOOTER */
+  footer{background:#08152F;color:#B9C6DA;padding:56px 0 24px}
+  .foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+  footer h5{font-family:'Inter',sans-serif;color:#fff;font-size:14px;font-weight:700;margin-bottom:16px;letter-spacing:.5px}
+  footer ul{list-style:none}
+  footer li{padding:5px 0;font-size:14px}
+  footer a:hover{color:var(--gold)}
+  .foot-brand p{font-size:13.5px;color:#8FA0BE;margin-top:14px;max-width:320px}
+  .socials{display:flex;gap:10px;margin-top:16px}
+  .soc{
+    width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.06);
+    display:flex;align-items:center;justify-content:center;color:#B9C6DA;transition:.2s;
+  }
+  .soc:hover{background:var(--gold);color:var(--navy)}
+  .copy{border-top:1px solid rgba(255,255,255,.08);padding-top:20px;text-align:center;font-size:13px;color:#7B8CA8}
+
+  /* RESPONSIVE */
+  @media (max-width:960px){
+    .nav-links,.nav-cta{display:none}
+    .menu-toggle{display:block}
+    .hero{padding:60px 0 70px}
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-visual{height:280px}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    section{padding:64px 0}
+    .about-wrap,.dual,.price-band,.points-band{grid-template-columns:1fr;gap:20px}
+    .steps{grid-template-columns:repeat(2,1fr);gap:24px}
+    .step:not(:last-child)::after{display:none}
+    .cards-4,.trust-grid,.benefit-grid{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
+    .price-band{padding:36px 28px}
+    .dual-card{padding:32px 24px;flex-direction:column;text-align:center}
+  }
+  @media (max-width:520px){
+    .cards-4,.benefit-grid,.foot-grid,.trust-grid{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .brand-text .sub{display:none}
+    .stats{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <div class="brand-mark">S</div>
+      <div class="brand-text">
+        <div class="big">Scalistic</div>
+        <div class="sub">by Research Synergy Foundation</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#client">Untuk Client</a></li>
+      <li><a href="#respondent">Untuk Respondent</a></li>
+      <li><a href="#manfaat">Manfaat</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#respondent" class="btn btn-ghost">Masuk</a>
+      <a href="#client" class="btn btn-primary">Daftar</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="beranda">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1>Bridge the<br>Data Gap with<br><span class="accent">Scalistic</span></h1>
+        <p class="lead">Scalistic adalah platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.</p>
+        <div class="hero-cta">
+          <a href="#client" class="btn btn-primary">Saya Butuh Responden →</a>
+          <a href="#respondent" class="btn btn-ghost">Jadi Respondent</a>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div><div class="stat-t">6.000+</div><div class="stat-s">Responden Aktif</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat-ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div><div class="stat-t">Validated</div><div class="stat-s">Proses validasi ketat</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat-ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+            </div>
+            <div><div class="stat-t">Reliable</div><div class="stat-s">Data valid & relevan</div></div>
+          </div>
+          <div class="stat">
+            <div class="stat-ic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <div><div class="stat-t">Actionable</div><div class="stat-s">Siap untuk dianalisis</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="globe">
+          <div class="dots-map"></div>
+          <svg class="arc-svg" viewBox="0 0 500 460" preserveAspectRatio="none">
+            <path class="arc" d="M 60 320 Q 200 60, 400 180"/>
+            <path class="arc" d="M 100 380 Q 260 120, 440 260" style="animation-delay:-3s"/>
+            <path class="arc" d="M 40 260 Q 180 380, 380 320" style="animation-delay:-6s"/>
+            <path class="arc" d="M 200 400 Q 300 200, 460 130" style="animation-delay:-9s"/>
+          </svg>
+          <div class="node" style="top:65%;left:12%"></div>
+          <div class="node" style="top:12%;left:40%;animation-delay:.4s"></div>
+          <div class="node" style="top:38%;left:80%;animation-delay:.8s"></div>
+          <div class="node" style="top:70%;left:56%;animation-delay:1.2s"></div>
+          <div class="node" style="top:25%;left:88%;animation-delay:1.6s"></div>
+          <div class="node" style="top:82%;left:38%;animation-delay:2s"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT + 5 STEPS -->
+<section>
+  <div class="container">
+    <div class="about-wrap">
+      <div class="about-card">
+        <div class="about-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Apa itu Scalistic?</h3>
+        <p>Scalistic menghubungkan peneliti, akademisi, dan organisasi dengan responden terverifikasi melalui distribusi survei yang tepat sasaran dan proses validasi yang ketat untuk memastikan kualitas data penelitian Anda.</p>
+      </div>
+      <div class="steps-card">
+        <h3>5 Langkah Mudah Bersama Scalistic</h3>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">1</span>
+            <div class="step-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="15" r="2"/><path d="M12 12v1"/></svg>
+            </div>
+            <div class="step-title">Inquiry</div>
+            <div class="step-desc">Penyerahan pertanyaan kuesioner & kriteria responden</div>
+          </div>
+          <div class="step">
+            <span class="step-num">2</span>
+            <div class="step-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <div class="step-title">Setup</div>
+            <div class="step-desc">Input kuesioner di sistem Scalistic</div>
+          </div>
+          <div class="step">
+            <span class="step-num">3</span>
+            <div class="step-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M6 13l3-3 3 3 5-5"/></svg>
+            </div>
+            <div class="step-title">Live Survey</div>
+            <div class="step-desc">Pengumpulan data responden yang ditargetkan</div>
+          </div>
+          <div class="step">
+            <span class="step-num">4</span>
+            <div class="step-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
+            </div>
+            <div class="step-title">Verification</div>
+            <div class="step-desc">Validasi responden</div>
+          </div>
+          <div class="step">
+            <span class="step-num">5</span>
+            <div class="step-circle">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <div class="step-title">Completion</div>
+            <div class="step-desc">Penyerahan tabulasi data siap dianalisis</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dual CTA -->
+    <div class="dual" style="margin-top:32px">
+      <a href="#client" class="dual-card client">
+        <div class="dual-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-4V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM10 5h4v2h-4z"/></svg>
+        </div>
+        <div>
+          <div class="dual-tag">Untuk Client</div>
+          <h3>Saya Butuh Responden</h3>
+          <p>Dapatkan responden berkualitas untuk riset, akademik, dan kebutuhan bisnis Anda.</p>
+          <span class="dual-btn">Pelajari untuk Client →</span>
+        </div>
+      </a>
+      <a href="#respondent" class="dual-card resp">
+        <div class="dual-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <div class="dual-tag">Untuk Respondent</div>
+          <h3>Saya Ingin Jadi Respondent</h3>
+          <p>Ikut survei, kumpulkan poin, dan tukarkan dengan berbagai benefit bermanfaat.</p>
+          <span class="dual-btn">Pelajari untuk Respondent →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg>
+        </div>
+        <div>
+          <h4>Didukung tim yang handal dari<br>Research Synergy Foundation</h4>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h4>Jangkauan luas di Indonesia & global<br>Lebih dari 150+ kota di Indonesia</h4>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <h4>Kualitas data terjamin<br>Proses validasi berlapis sesuai standar riset</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOR CLIENT SECTION -->
+<section class="client-section" id="client">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider-gold"></div>
+      <span class="section-tag">Untuk Client</span>
+      <h2>Temukan Responden yang Tepat.<br>Dapatkan Data Berkualitas.</h2>
+      <p>Scalistic membantu peneliti, akademisi, organisasi, dan perusahaan mendapatkan responden terverifikasi untuk riset, studi akademik, survei pasar, hingga kebutuhan bisnis strategis.</p>
+    </div>
+
+    <div class="cards-4">
+      <div class="feat-card">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h4>Responden yang Tepat</h4>
+        <p>Distribusi survei kepada responden yang sesuai dengan kriteria riset Anda.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M7 12h10M7 8h10M7 16h6"/></svg>
+        </div>
+        <h4>Distribusi Terarah</h4>
+        <p>Pendekatan yang lebih efisien dan tepat sasaran dalam distribusi survei.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h4>Data Berkualitas</h4>
+        <p>Setiap respons melalui proses validasi untuk menjaga kualitas data riset.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h4>Fleksibel</h4>
+        <p>Layanan dapat disesuaikan dengan kebutuhan penelitian dan target responden.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:56px">
+      <h3 style="font-size:22px;color:var(--navy);margin-bottom:6px">Cocok untuk Berbagai Kebutuhan</h3>
+      <p style="color:var(--muted);font-size:15px">Layanan kami didesain untuk mendukung berbagai bentuk riset dan pengambilan data.</p>
+      <div class="chips">
+        <span class="chip">Skripsi, Tesis, Disertasi</span>
+        <span class="chip">Riset Akademik</span>
+        <span class="chip">Riset Pasar & Konsumen</span>
+        <span class="chip">Survei Organisasi</span>
+        <span class="chip">Evaluasi Program & Kebijakan</span>
+        <span class="chip">Riset Bisnis & Strategi</span>
+        <span class="chip">Studi Sosial & Kesehatan</span>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="price-band" style="margin-top:64px">
+      <div>
+        <div class="divider-gold" style="margin:0 0 18px"></div>
+        <h3>Harga yang Fleksibel<br>Sesuai Kebutuhan Riset Anda</h3>
+        <p>Harga layanan menyesuaikan dengan kebutuhan survei, kompleksitas target responden, dan cakupan distribusi. Konsultasikan kebutuhan Anda dengan tim kami untuk penawaran terbaik.</p>
+        <a href="#kontak" class="btn btn-primary">Konsultasi Kebutuhan Survei →</a>
+      </div>
+      <div class="price-tag">
+        <div class="from">Mulai Dari</div>
+        <div class="amt">Rp 50.000</div>
+        <div class="per">per Respondent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESPONDENT SECTION -->
+<section class="resp-section" id="respondent">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider-gold"></div>
+      <span class="section-tag">Untuk Respondent</span>
+      <h2>Ikut Survei, Kumpulkan Poin,<br>Dapatkan <em style="color:var(--gold-2)">Benefit Bermakna</em></h2>
+      <p>Scalistic membuka kesempatan bagi respondent untuk berpartisipasi dalam survei dan mendapatkan benefit yang mendukung pengembangan akademik serta profesional.</p>
+    </div>
+
+    <!-- Points mechanism -->
+    <div class="points-band">
+      <div class="point">
+        <div class="point-num">20</div>
+        <div>
+          <div class="point-t">Poin per survei</div>
+          <div class="point-d">Kurang dari 30 Pertanyaan</div>
+        </div>
+      </div>
+      <div class="point">
+        <div class="point-num">30</div>
+        <div>
+          <div class="point-t">Poin per survei</div>
+          <div class="point-d">30 Pertanyaan atau Lebih</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BENEFIT CATEGORIES -->
+    <h3 style="text-align:center;margin:64px 0 32px;font-size:28px">Benefit yang Bisa Diklaim</h3>
+    <div class="benefit-grid">
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Webinar & Learning</h4>
+        <ul>
+          <li>Webinar Nasional</li>
+          <li>Webinar Internasional</li>
+          <li>E-course Hibah Int'l</li>
+          <li>E-Course F1000 & SLR</li>
+          <li>E-course Questionnaire</li>
+        </ul>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h4>E-book & Resources</h4>
+        <ul>
+          <li>E-book SLR 2.0</li>
+          <li>E-book RSF Research Academy</li>
+          <li>Worksheet Premium</li>
+        </ul>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h4>Academic Support</h4>
+        <ul>
+          <li>Paper Review Service</li>
+          <li>Proofreading Essential</li>
+          <li>Proofreading Premium</li>
+          <li>Free APC Journal</li>
+        </ul>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 11h-6M20 8v6"/></svg>
+        </div>
+        <h4>Coaching & Membership</h4>
+        <ul>
+          <li>E-Coaching SINTA</li>
+          <li>E-Coaching F1000</li>
+          <li>Free Membership</li>
+        </ul>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+        </div>
+        <h4>Conference Benefit</h4>
+        <ul>
+          <li>Conference Virtual Discount</li>
+          <li>Diskon hingga 50%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:56px">
+      <a href="#daftar" class="btn btn-teal">Daftar Jadi Respondent →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MANFAAT / WHY DIFFERENT -->
+<section id="manfaat" style="background:var(--navy);color:#fff;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(600px 300px at 80% 20%,rgba(232,168,44,.1),transparent 60%),radial-gradient(500px 260px at 20% 80%,rgba(20,85,79,.3),transparent 60%);pointer-events:none"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-head">
+      <div class="divider-gold"></div>
+      <span class="section-tag" style="color:var(--gold)">Manfaat</span>
+      <h2 style="color:#fff">Kenapa <em style="color:var(--gold)">Scalistic</em> Berbeda?</h2>
+      <p style="color:#C7D3E6">Scalistic menghubungkan client dan respondent dalam satu sistem distribusi survei yang lebih terarah — dengan fokus pada validasi kualitas data dan benefit yang bermakna.</p>
+    </div>
+    <div class="cards-4">
+      <div class="feat-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h4 style="color:#fff">Sistem Terintegrasi</h4>
+        <p style="color:#B9C6DA">Menghubungkan client dan respondent dalam satu sistem distribusi survei terarah.</p>
+      </div>
+      <div class="feat-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <h4 style="color:#fff">Fokus Validasi</h4>
+        <p style="color:#B9C6DA">Validasi berlapis untuk membantu menjaga kualitas dan reliabilitas data riset.</p>
+      </div>
+      <div class="feat-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <h4 style="color:#fff">Benefit Relevan</h4>
+        <p style="color:#B9C6DA">Benefit dirancang untuk mendukung perjalanan akademik dan profesional.</p>
+      </div>
+      <div class="feat-card" style="background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1)">
+        <div class="feat-ic">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4 style="color:#fff">Didukung RSF</h4>
+        <p style="color:#B9C6DA">Bagian dari ekosistem Research Synergy Foundation yang berpengalaman.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-head">
+      <div class="divider-gold"></div>
+      <span class="section-tag">FAQ</span>
+      <h2>Pertanyaan yang Sering Ditanyakan</h2>
+      <p>Jawaban cepat untuk pertanyaan umum seputar layanan Scalistic bagi client dan respondent.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-cat">FAQ Umum</div>
+      <details class="faq" open>
+        <summary>Apa itu Scalistic?</summary>
+        <div class="faq-body">Scalistic adalah platform distribusi survei dan penyedia responden terverifikasi di bawah Research Synergy Foundation.</div>
+      </details>
+      <details class="faq">
+        <summary>Siapa yang bisa menggunakan Scalistic?</summary>
+        <div class="faq-body">Mahasiswa, dosen, peneliti, organisasi, institusi, dan perusahaan dapat menggunakan layanan Scalistic.</div>
+      </details>
+      <details class="faq">
+        <summary>Apakah Scalistic hanya untuk Indonesia?</summary>
+        <div class="faq-body">Scalistic berfokus pada distribusi survei dan kebutuhan responden yang relevan sesuai cakupan layanan yang tersedia.</div>
+      </details>
+
+      <div class="faq-cat">FAQ Client</div>
+      <details class="faq">
+        <summary>Bagaimana cara memulai survei?</summary>
+        <div class="faq-body">Client mengirimkan kebutuhan survei, kuesioner, dan kriteria responden, lalu tim Scalistic membantu proses berikutnya.</div>
+      </details>
+      <details class="faq">
+        <summary>Bagaimana kualitas responden dijaga?</summary>
+        <div class="faq-body">Melalui proses validasi dan penyaringan yang membantu memastikan data lebih relevan dan berkualitas.</div>
+      </details>
+      <details class="faq">
+        <summary>Untuk kebutuhan apa layanan ini cocok?</summary>
+        <div class="faq-body">Cocok untuk riset akademik, survei pasar, evaluasi program, dan kebutuhan organisasi atau bisnis.</div>
+      </details>
+      <details class="faq">
+        <summary>Berapa harga layanan?</summary>
+        <div class="faq-body">Harga mulai dari Rp 50.000,- per-Respondent dan dapat disesuaikan dengan kebutuhan survei.</div>
+      </details>
+
+      <div class="faq-cat">FAQ Respondent</div>
+      <details class="faq">
+        <summary>Bagaimana cara menjadi respondent?</summary>
+        <div class="faq-body">Respondent dapat mendaftar dan mengikuti survei yang tersedia sesuai mekanisme yang berlaku.</div>
+      </details>
+      <details class="faq">
+        <summary>Bagaimana sistem poin berjalan?</summary>
+        <div class="faq-body">Survei kurang dari 30 pertanyaan memberi 20 poin, dan survei 30 pertanyaan memberi 30 poin.</div>
+      </details>
+      <details class="faq">
+        <summary>Benefit apa yang bisa diklaim?</summary>
+        <div class="faq-body">Benefit mencakup webinar, e-course, e-book, paper review, proofreading, free APC journal, e-coaching, conference discount, dan free membership.</div>
+      </details>
+      <details class="faq">
+        <summary>Apakah benefit diberikan otomatis?</summary>
+        <div class="faq-body">Benefit mengikuti sistem poin dan klaim sesuai ketentuan yang berlaku.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="kontak">
+  <div class="container">
+    <div class="divider-gold"></div>
+    <h2>Mulai Perjalanan Riset Anda<br>bersama <span>Scalistic</span></h2>
+    <p>Siap mendapatkan responden yang tepat untuk riset Anda — atau bergabung sebagai respondent dan raih benefit bermakna.</p>
+    <div class="final-cta-btns">
+      <a href="#client" class="btn btn-primary">Konsultasi Kebutuhan Survei</a>
+      <a href="#respondent" class="btn btn-ghost">Daftar Jadi Respondent</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand" style="margin-bottom:8px">
+          <div class="brand-mark">S</div>
+          <div class="brand-text">
+            <div class="big">Scalistic</div>
+            <div class="sub">by Research Synergy Foundation</div>
+          </div>
+        </div>
+        <p>Platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.</p>
+        <div class="socials">
+          <a href="#" class="soc" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="#" class="soc" aria-label="WhatsApp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5>Layanan</h5>
+        <ul>
+          <li><a href="#client">Untuk Client</a></li>
+          <li><a href="#respondent">Untuk Respondent</a></li>
+          <li><a href="#manfaat">Manfaat</a></li>
+          <li><a href="#kontak">Konsultasi Survei</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Perusahaan</h5>
+        <ul>
+          <li><a href="#beranda">Tentang Scalistic</a></li>
+          <li><a href="#">Research Synergy Foundation</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Kebijakan Privasi</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Kontak</h5>
+        <ul>
+          <li>info@scalistic.com</li>
+          <li>+62 xxx xxxx xxxx</li>
+          <li>Indonesia</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2026 Scalistic by Research Synergy Foundation. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu (simple placeholder)
+  document.querySelector('.menu-toggle')?.addEventListener('click',()=>{
+    const links=document.querySelector('.nav-links');
+    const cta=document.querySelector('.nav-cta');
+    [links,cta].forEach(el=>{
+      if(el){el.style.display=el.style.display==='flex'?'none':'flex';el.style.flexDirection='column';el.style.position='absolute';el.style.top='72px';el.style.right='20px';el.style.background='var(--navy)';el.style.padding='20px';el.style.borderRadius='12px';el.style.gap='14px'}
+    });
+  });
+</script>
+
+</body>
+</html>
