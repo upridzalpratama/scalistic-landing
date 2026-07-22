@@ -337,22 +337,35 @@
   .resp-section{background:#fff}
   .benefit-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
   .benefit{
-    background:var(--cream);border-radius:16px;padding:24px 20px;
+    background:var(--cream);border-radius:16px;padding:22px 16px;
     text-align:center;border:1px solid rgba(11,30,63,.05);transition:.3s;
+    display:flex;flex-direction:column;
   }
-  .benefit:hover{background:var(--navy);color:#fff;transform:translateY(-4px)}
+  .benefit:hover{background:var(--navy);color:#fff;transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,30,63,.15)}
   .benefit:hover .benefit-ic{background:var(--gold);color:var(--navy)}
-  .benefit:hover h4,.benefit:hover li{color:#fff}
+  .benefit:hover h4,.benefit:hover .benefit-desc{color:#fff}
   .benefit-ic{
-    width:52px;height:52px;border-radius:12px;
+    width:48px;height:48px;border-radius:12px;
     background:#fff;color:var(--teal);
     display:flex;align-items:center;justify-content:center;
-    margin:0 auto 14px;transition:.3s;
+    margin:0 auto 12px;transition:.3s;
     box-shadow:0 4px 12px rgba(11,30,63,.06);
   }
-  .benefit h4{font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);margin-bottom:10px;font-weight:700}
-  .benefit ul{list-style:none;text-align:left;padding:0}
-  .benefit li{font-size:12px;color:var(--muted);padding:3px 0;line-height:1.4}
+  .benefit h4{font-family:'Inter',sans-serif;font-size:14px;color:var(--navy);margin-bottom:6px;font-weight:700;line-height:1.25}
+  .benefit-desc{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:14px;flex-grow:1}
+  .benefit-poin{
+    display:inline-block;margin-top:auto;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    color:var(--navy);font-weight:700;font-size:11.5px;letter-spacing:.3px;
+    padding:6px 12px;border-radius:99px;align-self:center;
+  }
+  .benefit-note{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    text-align:center;font-size:13px;color:var(--muted);
+    margin-top:28px;padding:14px 20px;background:var(--cream);
+    border-radius:12px;
+  }
+  .benefit-note svg{color:var(--teal);flex-shrink:0}
 
   /* POINTS */
   .points-band{
@@ -754,65 +767,95 @@
     </div>
 
     <!-- BENEFIT CATEGORIES -->
-    <h3 style="text-align:center;margin:64px 0 32px;font-size:28px">Benefit yang Bisa Diklaim</h3>
+    <div style="text-align:center;margin:64px 0 32px">
+      <h3 style="font-size:28px;margin-bottom:8px">Benefit yang Bisa Diklaim</h3>
+      <p style="color:var(--muted);font-size:15px">Tukarkan poin Anda dengan berbagai benefit akademik dan profesional.</p>
+    </div>
     <div class="benefit-grid">
       <div class="benefit">
         <div class="benefit-ic">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         </div>
-        <h4>Webinar & Learning</h4>
-        <ul>
-          <li>Webinar Nasional</li>
-          <li>Webinar Internasional</li>
-          <li>E-course Hibah Int'l</li>
-          <li>E-Course F1000 & SLR</li>
-          <li>E-course Questionnaire</li>
-        </ul>
+        <h4>Webinar Nasional</h4>
+        <p class="benefit-desc">Akses gratis webinar berkualitas bersama pakar di Indonesia.</p>
+        <span class="benefit-poin">Mulai 80 Poin</span>
       </div>
       <div class="benefit">
         <div class="benefit-ic">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
         </div>
-        <h4>E-book & Resources</h4>
-        <ul>
-          <li>E-book SLR 2.0</li>
-          <li>E-book RSF Research Academy</li>
-          <li>Worksheet Premium</li>
-        </ul>
+        <h4>Webinar Internasional</h4>
+        <p class="benefit-desc">Ikuti webinar internasional dan perluas wawasan global Anda.</p>
+        <span class="benefit-poin">Mulai 120 Poin</span>
       </div>
       <div class="benefit">
         <div class="benefit-ic">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
         </div>
-        <h4>Academic Support</h4>
-        <ul>
-          <li>Paper Review Service</li>
-          <li>Proofreading Essential</li>
-          <li>Proofreading Premium</li>
-          <li>Free APC Journal</li>
-        </ul>
+        <h4>E-course</h4>
+        <p class="benefit-desc">Kelas online bersertifikat untuk tingkatkan skill dan kompetensi.</p>
+        <span class="benefit-poin">Mulai 150 Poin</span>
       </div>
       <div class="benefit">
         <div class="benefit-ic">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 11h-6M20 8v6"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
         </div>
-        <h4>Coaching & Membership</h4>
-        <ul>
-          <li>E-Coaching SINTA</li>
-          <li>E-Coaching F1000</li>
-          <li>Free Membership</li>
-        </ul>
+        <h4>E-book</h4>
+        <p class="benefit-desc">E-book pilihan untuk menambah pengetahuan kapan saja.</p>
+        <span class="benefit-poin">Mulai 60 Poin</span>
       </div>
       <div class="benefit">
         <div class="benefit-ic">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg>
         </div>
-        <h4>Conference Benefit</h4>
-        <ul>
-          <li>Conference Virtual Discount</li>
-          <li>Diskon hingga 50%</li>
-        </ul>
+        <h4>Paper Review Service</h4>
+        <p class="benefit-desc">Dapatkan review konstruktif untuk naskah Anda.</p>
+        <span class="benefit-poin">Mulai 180 Poin</span>
       </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h4>Proofreading</h4>
+        <p class="benefit-desc">Perbaikan bahasa dan format agar tulisan Anda lebih berkualitas.</p>
+        <span class="benefit-poin">Mulai 180 Poin</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><text x="7" y="17" font-size="6" font-weight="700" fill="currentColor" stroke="none">APC</text></svg>
+        </div>
+        <h4>Free APC Journal</h4>
+        <p class="benefit-desc">Voucher potongan atau pembebasan APC jurnal terpilih.</p>
+        <span class="benefit-poin">Mulai 300 Poin</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg>
+        </div>
+        <h4>E-Coaching</h4>
+        <p class="benefit-desc">Sesi coaching online bersama mentor berpengalaman.</p>
+        <span class="benefit-poin">Mulai 200 Poin</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+        </div>
+        <h4>Conference Discount</h4>
+        <p class="benefit-desc">Diskon registrasi untuk konferensi nasional maupun internasional.</p>
+        <span class="benefit-poin">Mulai 150 Poin</span>
+      </div>
+      <div class="benefit">
+        <div class="benefit-ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20l-2-10-5 4-3-6-3 6-5-4-2 10z"/></svg>
+        </div>
+        <h4>Free Membership</h4>
+        <p class="benefit-desc">Keanggotaan komunitas riset premium secara gratis.</p>
+        <span class="benefit-poin">Mulai 100 Poin</span>
+      </div>
+    </div>
+    <div class="benefit-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      Benefit dan poin dapat berubah sewaktu-waktu. Informasi terbaru akan selalu kami perbarui di platform.
     </div>
 
     <div style="text-align:center;margin-top:56px">
