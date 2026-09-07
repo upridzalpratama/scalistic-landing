@@ -77,6 +77,19 @@
   .btn-teal{background:var(--teal);color:#fff}
   .btn-teal:hover{background:var(--teal-2)}
   .menu-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+  .lang-switch{
+    display:inline-flex;align-items:center;gap:2px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);
+    padding:4px;border-radius:99px;
+  }
+  .lang-btn{
+    background:none;border:none;color:#B9C6DA;
+    font-size:12px;font-weight:600;letter-spacing:.5px;
+    padding:6px 12px;border-radius:99px;cursor:pointer;
+    transition:.2s;font-family:'Inter',sans-serif;
+  }
+  .lang-btn:hover{color:#fff}
+  .lang-btn.active{background:var(--gold);color:var(--navy)}
 
   /* HERO */
   .hero{
@@ -569,6 +582,10 @@
       <li><a href="#manfaat">Manfaat</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
+    <div class="lang-switch" role="group" aria-label="Language switcher">
+      <button class="lang-btn active" data-lang="id" type="button">ID</button>
+      <button class="lang-btn" data-lang="en" type="button">EN</button>
+    </div>
     <button class="menu-toggle" aria-label="Menu">☰</button>
   </div>
 </nav>
@@ -1146,9 +1163,8 @@
         <h5>Perusahaan</h5>
         <ul>
           <li><a href="#beranda">Tentang Scalistic</a></li>
-          <li><a href="#">Research Synergy Foundation</a></li>
+          <li><a href="https://www.researchsynergy.org" target="_blank" rel="noopener">Research Synergy Foundation</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#">Kebijakan Privasi</a></li>
         </ul>
       </div>
       <div>
@@ -1175,7 +1191,7 @@
   });
 
   // Price calculator
-  (function(){
+  const CALC = (function(){
     const HARGA_PER_UNIT = 350;
     const MIN_RESPONDEN = 30;
     const MIN_PERTANYAAN = 2;
@@ -1186,7 +1202,7 @@
     const bobotEl = document.getElementById('calc-bobot');
     const jwbEl = document.getElementById('calc-jwb');
     const totalEl = document.getElementById('calc-total');
-    if(!nasEl) return;
+    if(!nasEl) return {calc:()=>{}};
     const fmt = n => n.toLocaleString('id-ID');
     function calc(){
       const nas = Math.max(0, parseInt(nasEl.value) || 0);
@@ -1194,8 +1210,20 @@
       const q = Math.max(0, parseInt(qEl.value) || 0);
       const totalResp = nas + int;
       const errors = [];
-      if(totalResp < MIN_RESPONDEN) errors.push('Total responden minimal ' + MIN_RESPONDEN + ' orang (saat ini ' + totalResp + ').');
-      if(q < MIN_PERTANYAAN) errors.push('Jumlah pertanyaan minimal ' + MIN_PERTANYAAN + '.');
+      const lang = document.documentElement.lang || 'id';
+      const T = {
+        id: {
+          minResp: 'Total responden minimal ' + MIN_RESPONDEN + ' orang (saat ini ' + totalResp + ').',
+          minQ: 'Jumlah pertanyaan minimal ' + MIN_PERTANYAAN + '.'
+        },
+        en: {
+          minResp: 'Minimum ' + MIN_RESPONDEN + ' total respondents (currently ' + totalResp + ').',
+          minQ: 'Minimum ' + MIN_PERTANYAAN + ' questions required.'
+        }
+      };
+      const tr = T[lang] || T.id;
+      if(totalResp < MIN_RESPONDEN) errors.push(tr.minResp);
+      if(q < MIN_PERTANYAAN) errors.push(tr.minQ);
       if(errors.length){
         errEl.textContent = errors.join(' ');
         errEl.classList.add('show');
@@ -1211,6 +1239,215 @@
     }
     [nasEl, intEl, qEl].forEach(el => el.addEventListener('input', calc));
     calc();
+    return {calc};
+  })();
+
+  // Language switcher (text-node based translator)
+  (function(){
+    const dict = {
+      // NAV
+      "Beranda": "Home",
+      "Untuk Client": "For Clients",
+      "Untuk Respondent": "For Respondents",
+      "Manfaat": "Benefits",
+      // HERO
+      "Scalistic adalah platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.": "Scalistic is a survey distribution platform and verified respondent provider for research that is more valid, reliable, and actionable.",
+      "Saya Butuh Responden →": "I Need Respondents →",
+      "Jadi Respondent": "Become a Respondent",
+      "Responden Aktif": "Active Respondents",
+      "Proses validasi ketat": "Rigorous validation",
+      "Data valid & relevan": "Valid & relevant data",
+      "Siap untuk dianalisis": "Ready to analyze",
+      // ABOUT + STEPS
+      "Apa itu Scalistic?": "What is Scalistic?",
+      "Scalistic menghubungkan peneliti, akademisi, dan organisasi dengan responden terverifikasi melalui distribusi survei yang tepat sasaran dan proses validasi yang ketat untuk memastikan kualitas data penelitian Anda.": "Scalistic connects researchers, academics, and organizations with verified respondents through targeted survey distribution and rigorous validation to ensure the quality of your research data.",
+      "5 Langkah Mudah Bersama Scalistic": "5 Easy Steps with Scalistic",
+      "Penyerahan pertanyaan kuesioner & kriteria responden": "Submit questionnaire questions & respondent criteria",
+      "Input kuesioner di sistem Scalistic": "Input questionnaire into the Scalistic system",
+      "Pengumpulan data responden yang ditargetkan": "Collecting targeted respondent data",
+      "Validasi responden": "Respondent validation",
+      "Penyerahan tabulasi data siap dianalisis": "Delivery of analysis-ready tabulated data",
+      // DUAL CTA
+      "UNTUK CLIENT": "FOR CLIENTS",
+      "Untuk Client": "For Clients",
+      "Dapatkan responden berkualitas untuk riset, akademik, dan kebutuhan bisnis Anda.": "Get quality respondents for your research, academic, and business needs.",
+      "Pelajari untuk Client →": "Learn as a Client →",
+      "UNTUK RESPONDENT": "FOR RESPONDENTS",
+      "Saya Ingin Jadi Respondent": "I Want to Be a Respondent",
+      "Ikut survei, kumpulkan poin, dan tukarkan dengan berbagai benefit bermanfaat.": "Take surveys, collect points, and redeem for various useful benefits.",
+      "Pelajari untuk Respondent →": "Learn as a Respondent →",
+      // TRUST BAR
+      "Didukung tim yang handal dari": "Supported by a strong team from",
+      "Menjangkau lebih dari 45.000+ responden": "Reaching more than 45,000+ respondents",
+      "dan terverifikasi dari seluruh dunia": "verified from around the world",
+      "Kualitas data terjamin": "Guaranteed data quality",
+      "Proses validasi berlapis sesuai standar riset": "Multi-layer validation per research standards",
+      // CLIENT SECTION
+      "Temukan Responden yang Tepat.": "Find the Right Respondents.",
+      "Dapatkan Data Berkualitas.": "Get Quality Data.",
+      "Scalistic membantu peneliti, akademisi, organisasi, dan perusahaan mendapatkan responden terverifikasi untuk riset, studi akademik, survei pasar, hingga kebutuhan bisnis strategis.": "Scalistic helps researchers, academics, organizations, and companies get verified respondents for research, academic studies, market surveys, and strategic business needs.",
+      "Responden yang Tepat": "Right Respondents",
+      "Distribusi survei kepada responden yang sesuai dengan kriteria riset Anda.": "Survey distribution to respondents matching your research criteria.",
+      "Distribusi Terarah": "Targeted Distribution",
+      "Pendekatan yang lebih efisien dan tepat sasaran dalam distribusi survei.": "A more efficient and targeted approach to survey distribution.",
+      "Data Berkualitas": "Quality Data",
+      "Setiap respons melalui proses validasi untuk menjaga kualitas data riset.": "Every response goes through validation to maintain research data quality.",
+      "Fleksibel": "Flexible",
+      "Layanan dapat disesuaikan dengan kebutuhan penelitian dan target responden.": "Services can be tailored to your research needs and respondent targets.",
+      "Cocok untuk Berbagai Kebutuhan": "Suitable for Various Needs",
+      "Layanan kami didesain untuk mendukung berbagai bentuk riset dan pengambilan data.": "Our services are designed to support various forms of research and data collection.",
+      "Skripsi, Tesis, Disertasi": "Thesis & Dissertation",
+      "Riset Akademik": "Academic Research",
+      "Riset Pasar & Konsumen": "Market & Consumer Research",
+      "Survei Organisasi": "Organizational Surveys",
+      "Evaluasi Program & Kebijakan": "Program & Policy Evaluation",
+      "Riset Bisnis & Strategi": "Business & Strategy Research",
+      "Studi Sosial & Kesehatan": "Social & Health Studies",
+      // PRICING / CALCULATOR
+      "Hitung Estimasi Biaya": "Calculate the Cost Estimate",
+      "Survei Anda": "for Your Survey",
+      "Mulai Dari": "Starting From",
+      "Harga menyesuaikan dengan jumlah responden, cakupan geografis, dan panjang kuesioner. Gunakan simulator di samping untuk perkiraan cepat, atau langsung konsultasikan kebutuhan detail Anda dengan tim kami.": "Pricing adjusts to the number of respondents, geographic scope, and questionnaire length. Use the simulator alongside for a quick estimate, or consult your detailed needs directly with our team.",
+      "Harga per pertanyaan": "Price per question",
+      "· Bobot responden internasional dihitung 2×": "· International respondent weight counted 2×",
+      "Mulai Survei Sekarang →": "Start Survey Now →",
+      "Mulai Survei Sekarang": "Start Survey Now",
+      "Simulator Harga": "Price Simulator",
+      "Hitung estimasi biaya Anda": "Calculate your cost estimate",
+      "Jumlah Responden Nasional": "Number of National Respondents",
+      "Jumlah Responden Internasional": "Number of International Respondents",
+      "Jumlah Pertanyaan": "Number of Questions",
+      "(min. 2)": "(min. 2)",
+      "Bobot Responden": "Respondent Weight",
+      "Total Respon": "Total Responses",
+      "Harga per Pertanyaan": "Price per Question",
+      "Estimasi Total": "Total Estimate",
+      "Belum termasuk biaya tambahan khusus": "Excludes special additional fees",
+      "Total Harga": "Total Price",
+      "= Total Respon (Bobot Responden × Pertanyaan) × Harga per Pertanyaan": "= Total Responses (Respondent Weight × Questions) × Price per Question",
+      "Total responden minimal 30 orang. Estimasi bersifat indikatif dan dapat berubah sesuai kompleksitas survei.": "Minimum 30 total respondents. Estimate is indicative and may change based on survey complexity.",
+      // RESPONDENT SECTION
+      "Ikut Survei, Kumpulkan Poin,": "Take Surveys, Collect Points,",
+      "Dapatkan": "Get",
+      "Benefit Bermakna": "Meaningful Benefits",
+      "Scalistic membuka kesempatan bagi respondent untuk berpartisipasi dalam survei dan mendapatkan benefit yang mendukung pengembangan akademik serta profesional.": "Scalistic opens opportunities for respondents to participate in surveys and receive benefits supporting academic and professional development.",
+      "Poin per survei": "Points per survey",
+      "Kurang dari 30 Pertanyaan": "Fewer than 30 Questions",
+      "30 Pertanyaan atau Lebih": "30 Questions or More",
+      // BENEFITS
+      "Benefit yang Bisa Diklaim": "Claimable Benefits",
+      "Tukarkan poin Anda dengan berbagai benefit akademik dan profesional.": "Redeem your points for various academic and professional benefits.",
+      "Webinar Nasional": "National Webinar",
+      "Akses gratis webinar berkualitas bersama pakar di Indonesia.": "Free access to quality webinars with experts in Indonesia.",
+      "Webinar Internasional": "International Webinar",
+      "Ikuti webinar internasional dan perluas wawasan global Anda.": "Attend international webinars and expand your global perspective.",
+      "Kelas online bersertifikat untuk tingkatkan skill dan kompetensi.": "Certified online classes to boost your skills and competency.",
+      "E-book pilihan untuk menambah pengetahuan kapan saja.": "Curated e-books to expand your knowledge anytime.",
+      "Dapatkan review konstruktif untuk naskah Anda.": "Get constructive review for your manuscript.",
+      "Perbaikan bahasa dan format agar tulisan Anda lebih berkualitas.": "Language and format improvements to enhance your writing quality.",
+      "Voucher potongan atau pembebasan APC jurnal terpilih.": "Voucher discount or APC waiver for selected journals.",
+      "Sesi coaching online bersama mentor berpengalaman.": "Online coaching sessions with experienced mentors.",
+      "Diskon registrasi untuk konferensi nasional maupun internasional.": "Registration discount for national and international conferences.",
+      "Keanggotaan komunitas riset premium secara gratis.": "Free membership to the premium research community.",
+      "Mulai 80 Poin": "From 80 Points",
+      "Mulai 120 Poin": "From 120 Points",
+      "Mulai 150 Poin": "From 150 Points",
+      "Mulai 60 Poin": "From 60 Points",
+      "Mulai 180 Poin": "From 180 Points",
+      "Mulai 300 Poin": "From 300 Points",
+      "Mulai 200 Poin": "From 200 Points",
+      "Mulai 100 Poin": "From 100 Points",
+      "Benefit dan poin dapat berubah sewaktu-waktu. Informasi terbaru akan selalu kami perbarui di platform.": "Benefits and points may change at any time. The latest information will always be updated on the platform.",
+      "Daftar Jadi Respondent →": "Register as Respondent →",
+      "Daftar Jadi Respondent": "Register as Respondent",
+      // MANFAAT
+      "Kenapa": "Why Is",
+      "Berbeda?": "Different?",
+      "Scalistic menghubungkan client dan respondent dalam satu sistem distribusi survei yang lebih terarah, dengan fokus pada validasi kualitas data dan benefit yang bermakna.": "Scalistic connects clients and respondents in one more targeted survey distribution system, with a focus on data quality validation and meaningful benefits.",
+      "Sistem Terintegrasi": "Integrated System",
+      "Menghubungkan client dan respondent dalam satu sistem distribusi survei terarah.": "Connecting clients and respondents in one targeted survey distribution system.",
+      "Fokus Validasi": "Validation Focus",
+      "Validasi berlapis untuk membantu menjaga kualitas dan reliabilitas data riset.": "Multi-layer validation to help maintain research data quality and reliability.",
+      "Benefit Relevan": "Relevant Benefits",
+      "Benefit dirancang untuk mendukung perjalanan akademik dan profesional.": "Benefits designed to support academic and professional journeys.",
+      "Didukung RSF": "Supported by RSF",
+      "Bagian dari ekosistem Research Synergy Foundation yang berpengalaman.": "Part of the experienced Research Synergy Foundation ecosystem.",
+      // FAQ
+      "Pertanyaan yang Sering Ditanyakan": "Frequently Asked Questions",
+      "Jawaban cepat untuk pertanyaan umum seputar layanan Scalistic bagi client dan respondent.": "Quick answers to common questions about Scalistic services for clients and respondents.",
+      "FAQ Umum": "General FAQ",
+      "FAQ Client": "Client FAQ",
+      "FAQ Respondent": "Respondent FAQ",
+      "Scalistic adalah platform distribusi survei dan penyedia responden terverifikasi di bawah Research Synergy Foundation.": "Scalistic is a survey distribution platform and verified respondent provider under Research Synergy Foundation.",
+      "Siapa yang bisa menggunakan Scalistic?": "Who can use Scalistic?",
+      "Mahasiswa, dosen, peneliti, organisasi, institusi, dan perusahaan dapat menggunakan layanan Scalistic.": "Students, lecturers, researchers, organizations, institutions, and companies can use Scalistic.",
+      "Apakah Scalistic hanya untuk Indonesia?": "Is Scalistic only for Indonesia?",
+      "Scalistic berfokus pada distribusi survei dan kebutuhan responden yang relevan sesuai cakupan layanan yang tersedia.": "Scalistic focuses on survey distribution and relevant respondent needs within its available service coverage.",
+      "Bagaimana cara memulai survei?": "How do I start a survey?",
+      "Client mengirimkan kebutuhan survei, kuesioner, dan kriteria responden, lalu tim Scalistic membantu proses berikutnya.": "Clients send their survey needs, questionnaire, and respondent criteria, then the Scalistic team assists with the following steps.",
+      "Bagaimana kualitas responden dijaga?": "How is respondent quality maintained?",
+      "Melalui proses validasi dan penyaringan yang membantu memastikan data lebih relevan dan berkualitas.": "Through validation and screening processes that help ensure more relevant and quality data.",
+      "Untuk kebutuhan apa layanan ini cocok?": "What needs is this service suitable for?",
+      "Cocok untuk riset akademik, survei pasar, evaluasi program, dan kebutuhan organisasi atau bisnis.": "Suitable for academic research, market surveys, program evaluation, and organizational or business needs.",
+      "Berapa harga layanan?": "How much does the service cost?",
+      "Harga mulai dari Rp 21.000,- per-Respondent dan dapat disesuaikan dengan kebutuhan survei.": "Prices start from Rp 21,000 per respondent and can be adjusted to survey needs.",
+      "Bagaimana cara menjadi respondent?": "How do I become a respondent?",
+      "Respondent dapat mendaftar dan mengikuti survei yang tersedia sesuai mekanisme yang berlaku.": "Respondents can register and participate in available surveys following applicable procedures.",
+      "Bagaimana sistem poin berjalan?": "How does the points system work?",
+      "Survei kurang dari 30 pertanyaan memberi 20 poin, dan survei 30 pertanyaan memberi 30 poin.": "Surveys with fewer than 30 questions give 20 points, and surveys with 30 questions give 30 points.",
+      "Benefit apa yang bisa diklaim?": "What benefits can be claimed?",
+      "Benefit mencakup webinar, e-course, e-book, paper review, proofreading, free APC journal, e-coaching, conference discount, dan free membership.": "Benefits include webinars, e-courses, e-books, paper review, proofreading, free APC journal, e-coaching, conference discount, and free membership.",
+      "Apakah benefit diberikan otomatis?": "Are benefits given automatically?",
+      "Benefit mengikuti sistem poin dan klaim sesuai ketentuan yang berlaku.": "Benefits follow the points system and are claimed according to applicable terms.",
+      // FINAL CTA
+      "Mulai Perjalanan Riset Anda": "Start Your Research Journey",
+      "bersama": "with",
+      "Siap mendapatkan responden yang tepat untuk riset Anda, atau bergabung sebagai respondent dan raih benefit bermakna.": "Ready to get the right respondents for your research, or join as a respondent to earn meaningful benefits.",
+      // FOOTER
+      "Platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.": "Survey distribution platform and verified respondent provider for research that is more valid, reliable, and actionable.",
+      "Layanan": "Services",
+      "Konsultasi Survei": "Survey Consultation",
+      "Perusahaan": "Company",
+      "Tentang Scalistic": "About Scalistic",
+      "Kontak": "Contact"
+    };
+
+    // Collect all text nodes once, save originals
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    const nodes = [];
+    let n;
+    while(n = walker.nextNode()){
+      const t = n.textContent.trim();
+      if(t) nodes.push({node:n, orig:n.textContent, trim:t});
+    }
+
+    function applyLang(lang){
+      document.documentElement.lang = lang;
+      nodes.forEach(({node, orig, trim}) => {
+        if(lang === 'en' && dict[trim]){
+          node.textContent = orig.replace(trim, dict[trim]);
+        } else {
+          node.textContent = orig;
+        }
+      });
+      // Update buttons
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+      });
+      // Persist
+      try { localStorage.setItem('scalistic-lang', lang); } catch(e){}
+      // Re-run calculator so error messages update
+      if(typeof CALC?.calc === 'function') CALC.calc();
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // Load saved preference
+    let saved = 'id';
+    try { saved = localStorage.getItem('scalistic-lang') || 'id'; } catch(e){}
+    if(saved === 'en') applyLang('en');
   })();
 </script>
 
