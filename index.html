@@ -368,6 +368,10 @@
     display:flex;justify-content:space-between;align-items:center;gap:14px;
     padding:11px 0;border-bottom:1px dashed rgba(11,30,63,.1);
   }
+  /* Language visibility toggles */
+  html[lang="en"] .id-only{display:none !important}
+  html[lang="id"] .en-only{display:none !important}
+  html:not([lang]) .en-only{display:none !important}
   .calc-row label{
     font-size:13.5px;color:var(--muted);flex:1;line-height:1.35;
   }
@@ -827,36 +831,53 @@
       <div>
         <div class="divider-gold" style="margin:0 0 18px"></div>
         <h3>Hitung Estimasi Biaya<br>Survei Anda</h3>
-        <div style="display:inline-flex;align-items:baseline;gap:10px;background:rgba(232,168,44,.12);border:1px solid rgba(232,168,44,.35);padding:12px 20px;border-radius:12px;margin:6px 0 20px">
+        <div class="id-only" style="display:inline-flex;align-items:baseline;gap:10px;background:rgba(232,168,44,.12);border:1px solid rgba(232,168,44,.35);padding:12px 20px;border-radius:12px;margin:6px 0 20px">
           <span style="font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600">Mulai Dari</span>
           <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;line-height:1">Rp 21.000</span>
         </div>
+        <div class="en-only" style="display:inline-flex;align-items:baseline;gap:10px;background:rgba(232,168,44,.12);border:1px solid rgba(232,168,44,.35);padding:12px 20px;border-radius:12px;margin:6px 0 20px">
+          <span style="font-size:11px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;font-weight:600">Starting From</span>
+          <span style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;line-height:1">$3</span>
+        </div>
         <p>Harga menyesuaikan dengan jumlah responden, cakupan geografis, dan panjang kuesioner. Gunakan simulator di samping untuk perkiraan cepat, atau langsung konsultasikan kebutuhan detail Anda dengan tim kami.</p>
-        <p style="color:var(--gold);font-size:14px;font-weight:500;margin-bottom:22px;background:rgba(232,168,44,.08);padding:12px 16px;border-radius:8px;border-left:3px solid var(--gold)">
+        <p class="id-only" style="color:var(--gold);font-size:14px;font-weight:500;margin-bottom:22px;background:rgba(232,168,44,.08);padding:12px 16px;border-radius:8px;border-left:3px solid var(--gold)">
           Harga per pertanyaan <b style="font-family:'Playfair Display',serif;font-size:18px">Rp 350</b> · Bobot responden internasional dihitung 2×
+        </p>
+        <p class="en-only" style="color:var(--gold);font-size:14px;font-weight:500;margin-bottom:22px;background:rgba(232,168,44,.08);padding:12px 16px;border-radius:8px;border-left:3px solid var(--gold)">
+          Price per response unit <b style="font-family:'Playfair Display',serif;font-size:18px">$0.05</b> · Simple respondents × questions pricing
         </p>
         <a href="https://bit.ly/reg-scalistic" target="_blank" rel="noopener" class="btn btn-primary">Mulai Survei Sekarang →</a>
       </div>
       <div class="calc-widget">
         <div class="calc-title">Simulator Harga</div>
         <h4>Hitung estimasi biaya Anda</h4>
-        <div class="calc-row">
+        <div class="calc-row id-only">
           <label>Jumlah Responden Nasional</label>
           <input type="number" id="calc-nas" min="0" value="30" inputmode="numeric">
         </div>
-        <div class="calc-row">
+        <div class="calc-row id-only">
           <label>Jumlah Responden Internasional</label>
           <input type="number" id="calc-int" min="0" value="0" inputmode="numeric">
         </div>
-        <div class="calc-row">
+        <div class="calc-row id-only">
           <label>Jumlah Pertanyaan <span style="color:var(--gold);font-size:11px">(min. 2)</span></label>
           <input type="number" id="calc-q" min="2" value="10" inputmode="numeric">
         </div>
+        <div class="calc-row en-only">
+          <label>Number of Respondents <span style="color:var(--gold);font-size:11px">(min. 2)</span></label>
+          <input type="number" id="calc-resp-en" min="2" value="2" inputmode="numeric">
+        </div>
+        <div class="calc-row en-only">
+          <label>Number of Questions <span style="color:var(--gold);font-size:11px">(min. 30)</span></label>
+          <input type="number" id="calc-q-en" min="30" value="30" inputmode="numeric">
+        </div>
         <div class="calc-error" id="calc-error"></div>
         <div class="calc-detail">
-          <div class="calc-detail-row"><span>Bobot Responden</span><b id="calc-bobot">30</b></div>
-          <div class="calc-detail-row"><span>Total Respon</span><b id="calc-jwb">300</b></div>
-          <div class="calc-detail-row"><span>Harga per Pertanyaan</span><b>Rp 350</b></div>
+          <div class="calc-detail-row id-only"><span>Bobot Responden</span><b id="calc-bobot">30</b></div>
+          <div class="calc-detail-row id-only"><span>Total Respon</span><b id="calc-jwb">300</b></div>
+          <div class="calc-detail-row id-only"><span>Harga per Pertanyaan</span><b>Rp 350</b></div>
+          <div class="calc-detail-row en-only"><span>Total Response Units</span><b id="calc-units-en">60</b></div>
+          <div class="calc-detail-row en-only"><span>Price per Response Unit</span><b>$0.05</b></div>
         </div>
         <div class="calc-total">
           <div>
@@ -865,12 +886,19 @@
           </div>
           <span class="calc-total-amt" id="calc-total">Rp 105.000</span>
         </div>
-        <div class="calc-formula">
+        <div class="calc-formula id-only">
           <b>Total Harga</b> = Total Respon (Bobot Responden × Pertanyaan) × Harga per Pertanyaan
         </div>
-        <div class="calc-note">
+        <div class="calc-formula en-only">
+          <b>Total Price</b> = Number of Respondents × Number of Questions × Price per Response Unit
+        </div>
+        <div class="calc-note id-only">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           Total responden minimal 30 orang. Estimasi bersifat indikatif dan dapat berubah sesuai kompleksitas survei.
+        </div>
+        <div class="calc-note en-only">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          Minimum 2 respondents and 30 questions (total $3). Estimate is indicative and may change based on survey complexity.
         </div>
       </div>
     </div>
@@ -1190,54 +1218,64 @@
     });
   });
 
-  // Price calculator
+  // Price calculator (dual mode: IDR / USD)
   const CALC = (function(){
-    const HARGA_PER_UNIT = 350;
-    const MIN_RESPONDEN = 30;
-    const MIN_PERTANYAAN = 2;
+    // IDR params
+    const IDR_PRICE = 350, IDR_MIN_RESP = 30, IDR_MIN_Q = 2;
+    // USD params
+    const USD_PRICE = 0.05, USD_MIN_RESP = 2, USD_MIN_Q = 30;
+
     const nasEl = document.getElementById('calc-nas');
     const intEl = document.getElementById('calc-int');
     const qEl = document.getElementById('calc-q');
+    const respEnEl = document.getElementById('calc-resp-en');
+    const qEnEl = document.getElementById('calc-q-en');
     const errEl = document.getElementById('calc-error');
     const bobotEl = document.getElementById('calc-bobot');
     const jwbEl = document.getElementById('calc-jwb');
+    const unitsEnEl = document.getElementById('calc-units-en');
     const totalEl = document.getElementById('calc-total');
     if(!nasEl) return {calc:()=>{}};
-    const fmt = n => n.toLocaleString('id-ID');
+
+    const fmtID = n => n.toLocaleString('id-ID');
+    const fmtUSD = n => n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+
     function calc(){
-      const nas = Math.max(0, parseInt(nasEl.value) || 0);
-      const int = Math.max(0, parseInt(intEl.value) || 0);
-      const q = Math.max(0, parseInt(qEl.value) || 0);
-      const totalResp = nas + int;
-      const errors = [];
       const lang = document.documentElement.lang || 'id';
-      const T = {
-        id: {
-          minResp: 'Total responden minimal ' + MIN_RESPONDEN + ' orang (saat ini ' + totalResp + ').',
-          minQ: 'Jumlah pertanyaan minimal ' + MIN_PERTANYAAN + '.'
-        },
-        en: {
-          minResp: 'Minimum ' + MIN_RESPONDEN + ' total respondents (currently ' + totalResp + ').',
-          minQ: 'Minimum ' + MIN_PERTANYAAN + ' questions required.'
-        }
-      };
-      const tr = T[lang] || T.id;
-      if(totalResp < MIN_RESPONDEN) errors.push(tr.minResp);
-      if(q < MIN_PERTANYAAN) errors.push(tr.minQ);
+      const errors = [];
+
+      if(lang === 'en'){
+        const resp = Math.max(0, parseInt(respEnEl.value) || 0);
+        const q = Math.max(0, parseInt(qEnEl.value) || 0);
+        if(resp < USD_MIN_RESP) errors.push('Minimum ' + USD_MIN_RESP + ' respondents required (currently ' + resp + ').');
+        if(q < USD_MIN_Q) errors.push('Minimum ' + USD_MIN_Q + ' questions required (currently ' + q + ').');
+        const units = resp * q;
+        const total = units * USD_PRICE;
+        unitsEnEl.textContent = fmtID(units); // number formatting doesn't need locale here
+        totalEl.textContent = '$' + fmtUSD(total);
+      } else {
+        const nas = Math.max(0, parseInt(nasEl.value) || 0);
+        const int = Math.max(0, parseInt(intEl.value) || 0);
+        const q = Math.max(0, parseInt(qEl.value) || 0);
+        const totalResp = nas + int;
+        if(totalResp < IDR_MIN_RESP) errors.push('Total responden minimal ' + IDR_MIN_RESP + ' orang (saat ini ' + totalResp + ').');
+        if(q < IDR_MIN_Q) errors.push('Jumlah pertanyaan minimal ' + IDR_MIN_Q + '.');
+        const bobot = nas + 2 * int;
+        const jwb = bobot * q;
+        const total = jwb * IDR_PRICE;
+        bobotEl.textContent = fmtID(bobot);
+        jwbEl.textContent = fmtID(jwb);
+        totalEl.textContent = 'Rp ' + fmtID(total);
+      }
+
       if(errors.length){
         errEl.textContent = errors.join(' ');
         errEl.classList.add('show');
       } else {
         errEl.classList.remove('show');
       }
-      const bobot = nas + 2 * int;
-      const jwb = bobot * q;
-      const total = jwb * HARGA_PER_UNIT;
-      bobotEl.textContent = fmt(bobot);
-      jwbEl.textContent = fmt(jwb);
-      totalEl.textContent = 'Rp ' + fmt(total);
     }
-    [nasEl, intEl, qEl].forEach(el => el.addEventListener('input', calc));
+    [nasEl, intEl, qEl, respEnEl, qEnEl].forEach(el => el && el.addEventListener('input', calc));
     calc();
     return {calc};
   })();
