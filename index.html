@@ -1464,6 +1464,11 @@
     const CLIENT_URL_EN = 'https://bit.ly/scalistic-global';
     const clientLinks = Array.from(document.querySelectorAll('a[href="' + CLIENT_URL_ID + '"]'));
 
+    // Respondent registration links — different URL per language
+    const RESP_URL_ID = 'https://forms.gle/U6i9Q92Bd54J1xm48';
+    const RESP_URL_EN = 'https://forms.gle/gUpjP7AX5YAYRpWt5';
+    const respLinks = Array.from(document.querySelectorAll('a[href="' + RESP_URL_ID + '"]'));
+
     function applyLang(lang){
       document.documentElement.lang = lang;
       nodes.forEach(({node, orig, trim}) => {
@@ -1474,8 +1479,11 @@
         }
       });
       // Swap client registration links
-      const url = lang === 'en' ? CLIENT_URL_EN : CLIENT_URL_ID;
-      clientLinks.forEach(a => a.href = url);
+      const clientUrl = lang === 'en' ? CLIENT_URL_EN : CLIENT_URL_ID;
+      clientLinks.forEach(a => a.href = clientUrl);
+      // Swap respondent registration links
+      const respUrl = lang === 'en' ? RESP_URL_EN : RESP_URL_ID;
+      respLinks.forEach(a => a.href = respUrl);
       // Update buttons
       document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === lang);
