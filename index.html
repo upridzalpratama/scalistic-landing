@@ -1459,6 +1459,11 @@
       if(t) nodes.push({node:n, orig:n.textContent, trim:t});
     }
 
+    // Client registration links — different URL per language
+    const CLIENT_URL_ID = 'https://bit.ly/reg-scalistic';
+    const CLIENT_URL_EN = 'https://bit.ly/scalistic-global';
+    const clientLinks = Array.from(document.querySelectorAll('a[href="' + CLIENT_URL_ID + '"]'));
+
     function applyLang(lang){
       document.documentElement.lang = lang;
       nodes.forEach(({node, orig, trim}) => {
@@ -1468,6 +1473,9 @@
           node.textContent = orig;
         }
       });
+      // Swap client registration links
+      const url = lang === 'en' ? CLIENT_URL_EN : CLIENT_URL_ID;
+      clientLinks.forEach(a => a.href = url);
       // Update buttons
       document.querySelectorAll('.lang-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.lang === lang);
