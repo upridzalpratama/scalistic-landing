@@ -852,7 +852,7 @@
         <div class="calc-title">Simulator Harga</div>
         <h4>Hitung estimasi biaya Anda</h4>
         <div class="calc-row id-only">
-          <label>Jumlah Responden Nasional</label>
+          <label>Jumlah Responden Nasional <span style="color:var(--gold);font-size:11px">(min. 30 total)</span></label>
           <input type="number" id="calc-nas" min="0" value="30" inputmode="numeric">
         </div>
         <div class="calc-row id-only">
@@ -860,16 +860,16 @@
           <input type="number" id="calc-int" min="0" value="0" inputmode="numeric">
         </div>
         <div class="calc-row id-only">
-          <label>Jumlah Pertanyaan <span style="color:var(--gold);font-size:11px">(min. 2)</span></label>
-          <input type="number" id="calc-q" min="2" value="10" inputmode="numeric">
+          <label>Jumlah Pertanyaan <span style="color:var(--gold);font-size:11px">(min. 2, maks. 30)</span></label>
+          <input type="number" id="calc-q" min="2" max="30" value="10" inputmode="numeric">
         </div>
         <div class="calc-row en-only">
-          <label>Number of Respondents <span style="color:var(--gold);font-size:11px">(min. 2)</span></label>
-          <input type="number" id="calc-resp-en" min="2" value="2" inputmode="numeric">
+          <label>Number of Respondents <span style="color:var(--gold);font-size:11px">(min. 30)</span></label>
+          <input type="number" id="calc-resp-en" min="30" value="30" inputmode="numeric">
         </div>
         <div class="calc-row en-only">
-          <label>Number of Questions <span style="color:var(--gold);font-size:11px">(min. 30)</span></label>
-          <input type="number" id="calc-q-en" min="30" value="30" inputmode="numeric">
+          <label>Number of Questions <span style="color:var(--gold);font-size:11px">(min. 2, max. 30)</span></label>
+          <input type="number" id="calc-q-en" min="2" max="30" value="10" inputmode="numeric">
         </div>
         <div class="calc-error" id="calc-error"></div>
         <div class="calc-detail">
@@ -894,11 +894,11 @@
         </div>
         <div class="calc-note id-only">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          Total responden minimal 30 orang. Estimasi bersifat indikatif dan dapat berubah sesuai kompleksitas survei.
+          Total responden minimal 30 orang, pertanyaan 2-30. Estimasi bersifat indikatif dan dapat berubah sesuai kompleksitas survei.
         </div>
         <div class="calc-note en-only">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          Minimum 2 respondents and 30 questions (total $3). Estimate is indicative and may change based on survey complexity.
+          Minimum 30 respondents, questions 2-30 (minimum total $3). Estimate is indicative and may change based on survey complexity.
         </div>
       </div>
     </div>
@@ -1220,10 +1220,13 @@
 
   // Price calculator (dual mode: IDR / USD)
   const CALC = (function(){
-    // IDR params
-    const IDR_PRICE = 350, IDR_MIN_RESP = 30, IDR_MIN_Q = 2;
-    // USD params
-    const USD_PRICE = 0.05, USD_MIN_RESP = 2, USD_MIN_Q = 30;
+    // Shared constraints
+    const MIN_RESP = 30;
+    const MIN_Q = 2;
+    const MAX_Q = 30;
+    // Prices
+    const IDR_PRICE = 350;
+    const USD_PRICE = 0.05;
 
     const nasEl = document.getElementById('calc-nas');
     const intEl = document.getElementById('calc-int');
@@ -1247,19 +1250,21 @@
       if(lang === 'en'){
         const resp = Math.max(0, parseInt(respEnEl.value) || 0);
         const q = Math.max(0, parseInt(qEnEl.value) || 0);
-        if(resp < USD_MIN_RESP) errors.push('Minimum ' + USD_MIN_RESP + ' respondents required (currently ' + resp + ').');
-        if(q < USD_MIN_Q) errors.push('Minimum ' + USD_MIN_Q + ' questions required (currently ' + q + ').');
+        if(resp < MIN_RESP) errors.push('Minimum ' + MIN_RESP + ' respondents required (currently ' + resp + ').');
+        if(q < MIN_Q) errors.push('Minimum ' + MIN_Q + ' questions required.');
+        if(q > MAX_Q) errors.push('Maximum ' + MAX_Q + ' questions allowed (currently ' + q + ').');
         const units = resp * q;
         const total = units * USD_PRICE;
-        unitsEnEl.textContent = fmtID(units); // number formatting doesn't need locale here
+        unitsEnEl.textContent = fmtID(units);
         totalEl.textContent = '$' + fmtUSD(total);
       } else {
         const nas = Math.max(0, parseInt(nasEl.value) || 0);
         const int = Math.max(0, parseInt(intEl.value) || 0);
         const q = Math.max(0, parseInt(qEl.value) || 0);
         const totalResp = nas + int;
-        if(totalResp < IDR_MIN_RESP) errors.push('Total responden minimal ' + IDR_MIN_RESP + ' orang (saat ini ' + totalResp + ').');
-        if(q < IDR_MIN_Q) errors.push('Jumlah pertanyaan minimal ' + IDR_MIN_Q + '.');
+        if(totalResp < MIN_RESP) errors.push('Total responden minimal ' + MIN_RESP + ' orang (saat ini ' + totalResp + ').');
+        if(q < MIN_Q) errors.push('Jumlah pertanyaan minimal ' + MIN_Q + '.');
+        if(q > MAX_Q) errors.push('Jumlah pertanyaan maksimal ' + MAX_Q + ' (saat ini ' + q + ').');
         const bobot = nas + 2 * int;
         const jwb = bobot * q;
         const total = jwb * IDR_PRICE;
