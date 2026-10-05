@@ -384,12 +384,35 @@
   .calc-row input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,168,44,.15)}
   .calc-row input::-webkit-outer-spin-button,.calc-row input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
   .calc-error{
-    background:rgba(217,151,14,.1);color:#8B5A00;
-    border-left:3px solid var(--gold-2);
-    font-size:12.5px;padding:9px 12px;border-radius:6px;
-    margin-top:12px;display:none;line-height:1.4;
+    background:#FEE2E2;color:#991B1B;
+    border:1px solid #FCA5A5;border-left:4px solid #DC2626;
+    font-size:13px;padding:11px 14px;border-radius:8px;
+    margin-top:14px;display:none;line-height:1.45;
+    font-weight:500;gap:9px;align-items:flex-start;
   }
-  .calc-error.show{display:block}
+  .calc-error.show{display:flex;animation:calcShake .4s cubic-bezier(.36,.07,.19,.97)}
+  .calc-error::before{
+    content:"";display:block;flex-shrink:0;
+    width:18px;height:18px;margin-top:1px;
+    background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><line x1='12' y1='8' x2='12' y2='12'/><line x1='12' y1='16' x2='12.01' y2='16'/></svg>");
+  }
+  @keyframes calcShake{
+    10%,90%{transform:translateX(-1px)}
+    20%,80%{transform:translateX(2px)}
+    30%,50%,70%{transform:translateX(-3px)}
+    40%,60%{transform:translateX(3px)}
+  }
+  .calc-row input.invalid{
+    border-color:#DC2626;background:#FEF2F2;
+    box-shadow:0 0 0 3px rgba(220,38,38,.12);
+  }
+  .calc-total.invalid{
+    background:linear-gradient(135deg,#475569,#334155);
+  }
+  .calc-total.invalid .calc-total-label{color:#94A3B8}
+  .calc-total.invalid .calc-total-sub{color:#64748B}
+  .calc-total.invalid .calc-total-amt{color:#CBD5E1}
+  .calc-total{transition:background .25s}
   .calc-detail{
     margin-top:14px;padding:12px 14px;
     background:var(--cream);border-radius:10px;
@@ -1243,41 +1266,81 @@
     const fmtID = n => n.toLocaleString('id-ID');
     const fmtUSD = n => n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
 
+    const totalBlockEl = document.querySelector('.calc-total');
+    const DASH = '-';
+
+    function clearInvalid(){
+      [nasEl, intEl, qEl, respEnEl, qEnEl].forEach(el => el && el.classList.remove('invalid'));
+    }
+
     function calc(){
       const lang = document.documentElement.lang || 'id';
       const errors = [];
+      clearInvalid();
 
       if(lang === 'en'){
         const resp = Math.max(0, parseInt(respEnEl.value) || 0);
         const q = Math.max(0, parseInt(qEnEl.value) || 0);
-        if(resp < MIN_RESP) errors.push('Minimum ' + MIN_RESP + ' respondents required (currently ' + resp + ').');
-        if(q < MIN_Q) errors.push('Minimum ' + MIN_Q + ' questions required.');
-        if(q > MAX_Q) errors.push('Maximum ' + MAX_Q + ' questions allowed (currently ' + q + ').');
-        const units = resp * q;
-        const total = units * USD_PRICE;
-        unitsEnEl.textContent = fmtID(units);
-        totalEl.textContent = '$' + fmtUSD(total);
+        if(resp < MIN_RESP){
+          errors.push('Minimum ' + MIN_RESP + ' respondents required (currently ' + resp + ').');
+          respEnEl.classList.add('invalid');
+        }
+        if(q < MIN_Q){
+          errors.push('Minimum ' + MIN_Q + ' questions required.');
+          qEnEl.classList.add('invalid');
+        }
+        if(q > MAX_Q){
+          errors.push('Maximum ' + MAX_Q + ' questions allowed (currently ' + q + ').');
+          qEnEl.classList.add('invalid');
+        }
+        if(errors.length){
+          unitsEnEl.textContent = DASH;
+          totalEl.textContent = '$ ' + DASH;
+        } else {
+          const units = resp * q;
+          const total = units * USD_PRICE;
+          unitsEnEl.textContent = fmtID(units);
+          totalEl.textContent = '$' + fmtUSD(total);
+        }
       } else {
         const nas = Math.max(0, parseInt(nasEl.value) || 0);
         const int = Math.max(0, parseInt(intEl.value) || 0);
         const q = Math.max(0, parseInt(qEl.value) || 0);
         const totalResp = nas + int;
-        if(totalResp < MIN_RESP) errors.push('Total responden minimal ' + MIN_RESP + ' orang (saat ini ' + totalResp + ').');
-        if(q < MIN_Q) errors.push('Jumlah pertanyaan minimal ' + MIN_Q + '.');
-        if(q > MAX_Q) errors.push('Jumlah pertanyaan maksimal ' + MAX_Q + ' (saat ini ' + q + ').');
-        const bobot = nas + 2 * int;
-        const jwb = bobot * q;
-        const total = jwb * IDR_PRICE;
-        bobotEl.textContent = fmtID(bobot);
-        jwbEl.textContent = fmtID(jwb);
-        totalEl.textContent = 'Rp ' + fmtID(total);
+        if(totalResp < MIN_RESP){
+          errors.push('Total responden minimal ' + MIN_RESP + ' orang (saat ini ' + totalResp + ').');
+          nasEl.classList.add('invalid');
+          intEl.classList.add('invalid');
+        }
+        if(q < MIN_Q){
+          errors.push('Jumlah pertanyaan minimal ' + MIN_Q + '.');
+          qEl.classList.add('invalid');
+        }
+        if(q > MAX_Q){
+          errors.push('Jumlah pertanyaan maksimal ' + MAX_Q + ' (saat ini ' + q + ').');
+          qEl.classList.add('invalid');
+        }
+        if(errors.length){
+          bobotEl.textContent = DASH;
+          jwbEl.textContent = DASH;
+          totalEl.textContent = 'Rp ' + DASH;
+        } else {
+          const bobot = nas + 2 * int;
+          const jwb = bobot * q;
+          const total = jwb * IDR_PRICE;
+          bobotEl.textContent = fmtID(bobot);
+          jwbEl.textContent = fmtID(jwb);
+          totalEl.textContent = 'Rp ' + fmtID(total);
+        }
       }
 
       if(errors.length){
         errEl.textContent = errors.join(' ');
         errEl.classList.add('show');
+        totalBlockEl.classList.add('invalid');
       } else {
         errEl.classList.remove('show');
+        totalBlockEl.classList.remove('invalid');
       }
     }
     [nasEl, intEl, qEl, respEnEl, qEnEl].forEach(el => el && el.addEventListener('input', calc));
