@@ -1,0 +1,5 @@
+# Scalistic - robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://scalistic.com/sitemap.xml
