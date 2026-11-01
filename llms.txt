@@ -1,0 +1,50 @@
+# Scalistic
+
+> Scalistic is a survey distribution platform and verified respondent provider under Research Synergy Foundation. It connects researchers, academics, organizations, and businesses with 45,000+ verified respondents across Indonesia and globally for research, academic studies, market surveys, program evaluation, and strategic business needs.
+
+## Key Facts
+- Parent: Research Synergy Foundation (https://www.researchsynergy.org)
+- Verified respondents: 45,000+ worldwide
+- Minimum order (IDR): Rp 21,000 — 30 respondents × 2 questions × Rp 350 per response
+- Minimum order (USD): $3.00 — 30 respondents × 2 questions × $0.05 per response unit
+- Question constraints: minimum 2, maximum 30 per survey
+- International respondent weight: counted 2× in IDR pricing
+- Languages: Indonesian, English
+- Country: Indonesia
+- Contact: researchsynergy.institute@gmail.com, +62 811-2317-334
+
+## Services for Clients (Researchers / Businesses)
+Scalistic distributes surveys to verified respondents matching the client's criteria. Workflow is 5 steps: Inquiry → Setup → Live Survey → Verification → Completion. Use cases include undergraduate / master / doctoral thesis research, academic research, market and consumer research, organizational surveys, program and policy evaluation, business strategy research, social and health studies.
+
+- Client registration (ID): https://bit.ly/reg-scalistic
+- Client registration (Global): https://bit.ly/scalistic-global
+
+## For Respondents
+Respondents register, participate in available surveys, earn points, and redeem points for benefits that support academic and professional development.
+
+Point system:
+- Survey with fewer than 30 questions: 20 points
+- Survey with 30 questions: 30 points
+
+Claimable benefits (starting point costs):
+- National Webinar — from 80 points
+- International Webinar — from 120 points
+- E-course — from 150 points
+- E-book — from 60 points
+- Paper Review Service — from 180 points
+- Proofreading — from 180 points
+- Free APC Journal — from 300 points
+- E-Coaching — from 200 points
+- Conference Virtual Discount — from 150 points
+- Free Membership — from 100 points
+
+- Respondent registration (ID): https://forms.gle/U6i9Q92Bd54J1xm48
+- Respondent registration (Global): https://forms.gle/gUpjP7AX5YAYRpWt5
+
+## Primary URLs
+- Homepage: https://scalistic.com/
+- Articles / Blog: https://scalistic.com/artikel/
+- Sitemap: https://scalistic.com/sitemap.xml
+
+## Articles
+- Cara Menentukan Jumlah Responden Survei untuk Skripsi, Tesis, dan Riset Pasar: https://scalistic.com/artikel/cara-menentukan-jumlah-responden-survei.html

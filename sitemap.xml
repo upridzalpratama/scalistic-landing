@@ -3,11 +3,23 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://scalistic.com/</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.com/"/>
+  </url>
+  <url>
+    <loc>https://scalistic.com/artikel/</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scalistic.com/artikel/cara-menentukan-jumlah-responden-survei.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
