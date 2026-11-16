@@ -45,9 +45,11 @@
   "blogPost": [
     {
       "@type": "BlogPosting",
-      "headline": "Cara Menentukan Jumlah Responden Survei untuk Skripsi, Tesis, dan Riset Pasar",
-      "url": "https://scalistic.com/artikel/cara-menentukan-jumlah-responden-survei.html",
-      "datePublished": "2026-11-01T08:00:00+07:00",
+      "headline": "Beyond Your Local Network: Rethinking How Researchers Find Survey Respondents",
+      "url": "https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html",
+      "image": "https://scalistic.com/artikel/img/researcher-laptop.jpg",
+      "inLanguage": "en",
+      "datePublished": "2026-11-16T08:00:00+07:00",
       "author": {"@type":"Organization","name":"Tim Scalistic"}
     }
   ]
@@ -112,6 +114,9 @@
   .list-card:hover{transform:translateY(-6px);box-shadow:0 20px 42px rgba(11,30,63,.1);border-color:var(--gold)}
   .list-card-img{width:100%;aspect-ratio:16/10;background:linear-gradient(135deg,var(--navy),var(--teal));position:relative;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:42px;font-weight:700}
   .list-card-img::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 70% 30%,rgba(232,168,44,.25),transparent 70%)}
+  .list-card-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .list-card-img:has(img)::after{background:linear-gradient(180deg,transparent 55%,rgba(11,30,63,.35))}
+  .list-tag{position:absolute;bottom:14px;right:16px;font-size:11px;font-family:Inter,sans-serif;background:rgba(232,168,44,.95);color:var(--navy);padding:4px 10px;border-radius:99px;letter-spacing:1px;font-weight:700;z-index:1}
   .list-card-body{padding:24px 24px 28px;display:flex;flex-direction:column;flex-grow:1}
   .list-cat{font-size:10.5px;letter-spacing:1.8px;color:var(--teal);text-transform:uppercase;font-weight:700;margin-bottom:10px;display:block}
   .list-card h2{font-size:19px;color:var(--navy);margin-bottom:10px;line-height:1.3}
@@ -182,18 +187,18 @@
   <div class="container">
     <div class="list-grid">
 
-      <a href="cara-menentukan-jumlah-responden-survei.html" class="list-card">
-        <div class="list-card-img">S<span style="position:absolute;bottom:14px;right:16px;font-size:11px;font-family:Inter,sans-serif;background:rgba(232,168,44,.9);color:var(--navy);padding:4px 10px;border-radius:99px;letter-spacing:1px;font-weight:700;z-index:1">METODOLOGI</span></div>
+      <a href="find-survey-respondents-beyond-your-network.html" class="list-card">
+        <div class="list-card-img"><img src="img/researcher-laptop.jpg" alt="A researcher filling in an online survey questionnaire on a laptop" width="1600" height="1067" loading="lazy" decoding="async"><span class="list-tag">ENGLISH</span></div>
         <div class="list-card-body">
-          <span class="list-cat">Metodologi Riset</span>
-          <h2>Cara Menentukan Jumlah Responden Survei untuk Skripsi, Tesis, dan Riset Pasar</h2>
-          <p>Panduan lengkap menentukan sample size yang tepat. Rumus Slovin, patokan praktis per jenis riset, dan faktor yang memengaruhi.</p>
+          <span class="list-cat">Survey Recruitment</span>
+          <h2>Beyond Your Local Network: Rethinking How Researchers Find Survey Respondents</h2>
+          <p>Your personal network is a useful start, but it has limits in size, variety and fit. Here is how to reach the right respondents beyond it.</p>
           <div class="list-card-meta">
             <span>Tim Scalistic</span>
             <span>·</span>
-            <time datetime="2026-11-01">1 Nov 2026</time>
+            <time datetime="2026-11-16">16 Nov 2026</time>
             <span>·</span>
-            <span>8 menit</span>
+            <span>6 menit</span>
           </div>
         </div>
       </a>
@@ -255,7 +260,7 @@
       "Platform distribusi survei dan penyedia responden terverifikasi untuk riset yang lebih valid, reliable, dan actionable.":"Survey distribution platform and verified respondent provider for research that is more valid, reliable, and actionable.",
       "Artikel & Panduan Riset":"Articles & Research Guides",
       "Kumpulan panduan metodologi riset, tips survei, dan insight tentang pengumpulan data berkualitas dari Tim Scalistic.":"A collection of research methodology guides, survey tips, and insights on quality data collection from the Scalistic Team.",
-      "Metodologi Riset":"Research Methodology","Tim Scalistic":"Scalistic Team","8 menit":"8 min read"
+      "Tim Scalistic":"Scalistic Team","6 menit":"6 min read"
     };
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
     const nodes = []; let n;

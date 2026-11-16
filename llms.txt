@@ -47,4 +47,5 @@ Claimable benefits (starting point costs):
 - Sitemap: https://scalistic.com/sitemap.xml
 
 ## Articles
-- Cara Menentukan Jumlah Responden Survei untuk Skripsi, Tesis, dan Riset Pasar: https://scalistic.com/artikel/cara-menentukan-jumlah-responden-survei.html
+- Beyond Your Local Network: Rethinking How Researchers Find Survey Respondents (English, 2026-11-16): https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html
+  Summary: Why relying only on a personal network limits sample size, diversity and fit, and practical channels to find survey respondents (associations, institutional partners, online communities, research respondent networks such as Scalistic).
