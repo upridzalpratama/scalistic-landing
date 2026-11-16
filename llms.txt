@@ -49,3 +49,4 @@ Claimable benefits (starting point costs):
 ## Articles
 - Beyond Your Local Network: Rethinking How Researchers Find Survey Respondents (English, 2026-11-16): https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html
   Summary: Why relying only on a personal network limits sample size, diversity and fit, and practical channels to find survey respondents (associations, institutional partners, online communities, research respondent networks such as Scalistic).
+- Melampaui Jaringan Pribadi: Cara Baru Peneliti Mencari Responden Survei (Bahasa Indonesia version of the article above): https://scalistic.com/artikel/cara-mencari-responden-survei.html
