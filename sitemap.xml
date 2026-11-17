@@ -2,36 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://scalistic.com/</loc>
+    <loc>https://scalistic.io/</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.com/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.io/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.io/"/>
   </url>
   <url>
-    <loc>https://scalistic.com/artikel/</loc>
+    <loc>https://scalistic.io/artikel/</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html</loc>
+    <loc>https://scalistic.io/artikel/find-survey-respondents-beyond-your-network.html</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.com/artikel/cara-mencari-responden-survei.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.io/artikel/find-survey-respondents-beyond-your-network.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.io/artikel/cara-mencari-responden-survei.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.io/artikel/find-survey-respondents-beyond-your-network.html"/>
   </url>
   <url>
-    <loc>https://scalistic.com/artikel/cara-mencari-responden-survei.html</loc>
+    <loc>https://scalistic.io/artikel/cara-mencari-responden-survei.html</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html"/>
-    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.com/artikel/cara-mencari-responden-survei.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.com/artikel/find-survey-respondents-beyond-your-network.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scalistic.io/artikel/find-survey-respondents-beyond-your-network.html"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://scalistic.io/artikel/cara-mencari-responden-survei.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://scalistic.io/artikel/find-survey-respondents-beyond-your-network.html"/>
   </url>
 </urlset>

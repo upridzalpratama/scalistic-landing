@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://scalistic.com/sitemap.xml
+Sitemap: https://scalistic.io/sitemap.xml
